@@ -14,11 +14,14 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // index routes
 Route::get('/', [HelloWorldController::class, 'index']);
 
 // login routes
-Route::get("/login", [AuthController::class, 'index']);
+Route::get("/login", [AuthController::class, 'getLoginTemplate']);
+Route::post("/login", [AuthController::class, "userLogin"]);
 
 // Create accout route
-Route::get("/create-account", [AuthController::class, "createAccount"]);
+Route::get("/create-account", [AuthController::class, "getCreateAccountTemplate"]);
+Route::post("/create-account", [AuthController::class, "createAccount"]);
