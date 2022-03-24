@@ -19,3 +19,6 @@ Route::get('/', [HelloWorldController::class, 'index']);
 
 // login routes
 Route::get("/login", [AuthController::class, 'index']);
+
+// Create accout route
+Route::get("/create-account", [AuthController::class, "createAccount"]);
