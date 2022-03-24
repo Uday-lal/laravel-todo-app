@@ -12,6 +12,7 @@ class HelloWorldController extends Controller
         if (!$isLogin) {
             return redirect("/login");
         }
+        return view("welcome");
     }
 
     private function isLogin(Request $request) {
