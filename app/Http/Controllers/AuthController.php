@@ -12,7 +12,7 @@ class AuthController extends Controller
         if ($isLogin) {
             return redirect("/");
         }
-        return "Login";
+        return view("login");
     }
 
     private function isLogin(Request $request) {
