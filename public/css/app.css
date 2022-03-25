@@ -216,9 +216,23 @@ div.status {
 div.next-status {
     background-color: #3e59e8;
 }
+div.on-progress-status {
+    background-color: yellow;
+}
+div.done-status {
+    background-color: green;
+}
 
 .next-time {
     color: #3e59e8;
+}
+
+.on-progress-time {
+    color: yellow;
+}
+
+.done-time {
+    color: green;
 }
 
 button.edit {

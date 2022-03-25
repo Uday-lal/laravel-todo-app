@@ -14,7 +14,15 @@ class HelloWorldController extends Controller
         if (!$isLogin) {
             return redirect("/login");
         }
-        return view("welcome");
+        $nextTasks = DB::table("todo")->where("status", "next")->get();
+        $onProgressTask = DB::table("todo")->where("status", "on_progress")->get();
+        $doneTask = DB::table("todo")->where("status", "done")->get();
+        return view("welcome", [
+            "next" => $nextTasks, 
+            "on_progress" => $onProgressTask, 
+            "done" => $doneTask
+            ]
+        );
     }
 
     public function createTask(Request $request) {

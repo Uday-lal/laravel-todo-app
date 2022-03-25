@@ -47,6 +47,7 @@
                <div class="header">Next Task</div>
             </div>
             <div class="next-task task">
+                @foreach ($next as $nextTask)
                 <div class="card task-card">
                     <button class="edit next-edit">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#3E59E8">
@@ -54,25 +55,48 @@
                             <path d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                         </svg>
                     </button>
-                    <h4>Testing</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem eaque et asperiores eum aliquam nobis ullam, placeat consectetur reiciendis dolorum.</p>
+                    <h4>{{ $nextTask->task }}</h4>
+                    <p>{{ $nextTask->discription }}</p>
                     <div class="task-card-bottom">
                         <div class="status-container">
                             <div class="status next-status"></div>
                             <div>Next Status</div>
                         </div>
                         <div class="timing">
-                            Added on: <span class="next-time">Today</span>
+                            Added on: <span class="next-time">{{ $nextTask->date }}</span>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </section>
         <section class="on-progress col">
             <div class="onprogress-task-header task-header">
                 <div class="header">On Progress</div>
             </div>
-            <div class="onprogress-task task"></div>
+            <div class="onprogress-task task">
+                @foreach ($on_progress as $on_progress_task)
+                <div class="card task-card">
+                    <button class="edit next-edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#3E59E8">
+                            <path d="M0 0h24v24H0V0z" fill="none"/>
+                            <path d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                        </svg>
+                    </button>
+                    <h4>{{ $on_progress_task->task }}</h4>
+                    <p>{{ $on_progress_task->discription }}</p>
+                    <div class="task-card-bottom">
+                        <div class="status-container">
+                            <div class="status on-progress-status"></div>
+                            <div>On progress</div>
+                        </div>
+                        <div class="timing">
+                            Added on: <span class="on-progress-time">{{ $on_progress_task->date }}</span>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </section>
         <section class="done col">
             <div class="done-task-header task-header">
