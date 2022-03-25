@@ -178,7 +178,7 @@ button#add-task {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     bottom: 1px;
     z-index: 1;
     right: 1px;
