@@ -14,13 +14,16 @@ class HelloWorldController extends Controller
         if (!$isLogin) {
             return redirect("/login");
         }
+        $userId = $request->session()->get("user_id");
+        $userData = DB::table("users")->where("id", $userId)->first();
         $nextTasks = DB::table("todo")->where("status", "next")->get();
         $onProgressTask = DB::table("todo")->where("status", "on_progress")->get();
         $doneTask = DB::table("todo")->where("status", "done")->get();
         return view("welcome", [
             "next" => $nextTasks, 
             "on_progress" => $onProgressTask, 
-            "done" => $doneTask
+            "done" => $doneTask,
+            "user_data" => $userData
             ]
         );
     }
@@ -69,6 +72,11 @@ class HelloWorldController extends Controller
             );
         }
         return redirect("/");
+    }
+
+    public function logout(Request $request) {
+        $request->session()->forget("user_id");
+        return redirect("/login");
     }
 
     private function isLogin(Request $request) {

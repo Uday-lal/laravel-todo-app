@@ -20,6 +20,7 @@ Route::get('/', [HelloWorldController::class, 'index']);
 Route::post("/", [HelloWorldController::class, 'createTask']);
 Route::post("/update", [HelloWorldController::class, "update"]);
 Route::get("/progress/{status}/{id}", [HelloWorldController::class, "progress"]);
+Route::get("/logout", [HelloWorldController::class, "logout"]);
 
 // login routes
 Route::get("/login", [AuthController::class, 'getLoginTemplate']);

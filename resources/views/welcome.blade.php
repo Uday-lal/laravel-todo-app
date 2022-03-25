@@ -28,10 +28,10 @@
 <div class="home-page">
     <nav class="nav-gradian">
         <div class="left-nav-section">
-            <h1 style="font-weight: normal; font-size: 30px">Hi, <span style="color: #3E59E8">Uday</span></h1>
+            <h1 style="font-weight: normal; font-size: 30px">Hi, <span style="color: #3E59E8">{{$user_data->username}}</span></h1>
         </div>
         <div class="right-nav-section">
-            <a href="#" style="color: #1F212C;text-decoration: none">Logout</a>
+            <a href="/logout" style="color: #1F212C;text-decoration: none">Logout</a>
         </div>
     </nav>
     <button id="add-task">
