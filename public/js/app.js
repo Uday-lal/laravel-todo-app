@@ -14,8 +14,39 @@ function addTaskAction() {
     };
 }
 
+function editTaskAction() {
+    const editBtns = document.getElementsByClassName("edit");
+    const closeBtns = document.getElementsByClassName("close");
+    for (let editBtn of editBtns) {
+        editBtn.onclick = () => {
+            const buttonId = editBtn.id;
+            const editTask = document.getElementById("edit-task-" + buttonId);
+            const editTaskPoup = document.getElementById(
+                "edit-task-popup-" + buttonId
+            );
+            editTask.style.display = "flex";
+            editTaskPoup.style.display = "flex";
+        };
+    }
+
+    for (let closeBtn of closeBtns) {
+        closeBtn.onclick = () => {
+            const popups = document.getElementsByClassName("popups");
+            const popup = document.getElementsByClassName("popup");
+            for (let p of popups) {
+                p.style.display = "none";
+            }
+
+            for (let pop of popup) {
+                pop.style.display = "none";
+            }
+        };
+    }
+}
+
 function main() {
     addTaskAction();
+    editTaskAction();
 }
 
 main();

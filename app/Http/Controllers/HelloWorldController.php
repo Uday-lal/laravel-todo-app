@@ -43,6 +43,34 @@ class HelloWorldController extends Controller
         return redirect($request->url());
     }
 
+    public function update(Request $request) {
+        $taskId = $request->input()["task-id"];
+        $task = $request->input()["task"];
+        $discription = $request->input()["discription"];
+        $userId = $request->session()->get("user_id");
+
+        DB::table("todo")->where("id", $taskId)->update(
+            [
+                "discription" => $discription,
+                "task" => $task
+            ]
+        );
+        return redirect("/");
+    }
+
+    public function progress(Request $request, $status, $id) {
+        if ($status == "delete") {
+            DB::table("todo")->where("id", $id)->delete();
+        } else {
+            DB::table("todo")->where("id", $id)->update(
+                [
+                    "status" => $status
+                ]
+            );
+        }
+        return redirect("/");
+    }
+
     private function isLogin(Request $request) {
         $userId = $request->session()->get("user_id");
         if (!isset($userId)) {
