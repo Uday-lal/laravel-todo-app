@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer("user_id");
             $table->string("task");
-            $table->boolean("is_completed");
+            $table->string("status");
+            $table->string("discription");
+            $table->date("date");
         });
     }
 

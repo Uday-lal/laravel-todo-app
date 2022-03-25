@@ -11,11 +11,12 @@
         </button>
         <div class="card popup-card">
             <form method="post">
+                @csrf
                 <div class="input-container">
-                    <input class="primary-input" type="text" placeholder="Task title" required>
+                    <input class="primary-input" name="task" type="text" placeholder="Task title" required>
                 </div>
                 <div class="input-container">
-                    <textarea placeholder="Enter discription" name="discription" cols="40" rows="10"></textarea>
+                    <textarea required placeholder="Enter discription" name="discription" cols="40" rows="10"></textarea>
                 </div>
                 <div class="button-container">
                     <button type="submit" style="width: 100px;" class="primary-button">Add</button>

@@ -17,6 +17,7 @@ use App\Http\Controllers\AuthController;
 
 // index routes
 Route::get('/', [HelloWorldController::class, 'index']);
+Route::post("/", [HelloWorldController::class, 'createTask']);
 
 // login routes
 Route::get("/login", [AuthController::class, 'getLoginTemplate']);
