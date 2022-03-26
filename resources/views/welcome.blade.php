@@ -31,7 +31,10 @@
             <h1 style="font-weight: normal; font-size: 30px">Hi, <span style="color: #3E59E8">{{$user_data->username}}</span></h1>
         </div>
         <div class="right-nav-section">
-            <a href="/logout" style="color: #1F212C;text-decoration: none">Logout</a>
+            @if ($is_manager)
+                <a class="nav-link" href="/users">Users</a>
+            @endif
+            <a href="/logout" class="nav-link">Logout</a>
         </div>
     </nav>
     <button id="add-task">

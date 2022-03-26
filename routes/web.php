@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HelloWorldController;
+use App\Http\Controllers\TodoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManagerController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +18,11 @@ use App\Http\Controllers\AuthController;
 */
 
 // index routes
-Route::get('/', [HelloWorldController::class, 'index']);
-Route::post("/", [HelloWorldController::class, 'createTask']);
-Route::post("/update", [HelloWorldController::class, "update"]);
-Route::get("/progress/{status}/{id}", [HelloWorldController::class, "progress"]);
-Route::get("/logout", [HelloWorldController::class, "logout"]);
+Route::get('/', [TodoController::class, 'index']);
+Route::post("/", [TodoController::class, 'createTask']);
+Route::post("/update", [TodoController::class, "update"]);
+Route::get("/progress/{status}/{id}", [TodoController::class, "progress"]);
+Route::get("/logout", [TodoController::class, "logout"]);
 
 // login routes
 Route::get("/login", [AuthController::class, 'getLoginTemplate']);
@@ -29,3 +31,8 @@ Route::post("/login", [AuthController::class, "userLogin"]);
 // Create accout route
 Route::get("/create-account", [AuthController::class, "getCreateAccountTemplate"]);
 Route::post("/create-account", [AuthController::class, "createAccount"]);
+
+// Manager routes
+Route::get("/users", [ManagerController::class, "getUsers"]);
+Route::get("/users/{id}", [ManagerController::class, "getUser"]);
+Route::post("/users/{id}", [ManagerController::class, "createTask"]);

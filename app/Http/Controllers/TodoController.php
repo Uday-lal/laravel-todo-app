@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 
-class HelloWorldController extends Controller
+class TodoController extends Controller
 {
     public function index(Request $request) {
         $isLogin = $this->isLogin($request);
@@ -19,11 +19,13 @@ class HelloWorldController extends Controller
         $nextTasks = DB::table("todo")->where("status", "next")->get();
         $onProgressTask = DB::table("todo")->where("status", "on_progress")->get();
         $doneTask = DB::table("todo")->where("status", "done")->get();
-        return view("welcome", [
-            "next" => $nextTasks, 
-            "on_progress" => $onProgressTask, 
-            "done" => $doneTask,
-            "user_data" => $userData
+        return view("welcome", 
+            [
+                "next" => $nextTasks, 
+                "on_progress" => $onProgressTask, 
+                "done" => $doneTask,
+                "user_data" => $userData,
+                "is_manager" => $request->session()->get("is_manager")
             ]
         );
     }

@@ -26,6 +26,7 @@ class AuthController extends Controller
         $userPassword = $userData->password;
         if (Hash::check($password, $userPassword)) {
             $request->session()->put("user_id", $userData->id);
+            $request->session()->put("is_manager",  $userData->role == "manager");
             return redirect("/");
         }
         return redirect($request->url());

@@ -302,3 +302,34 @@ button#close:hover {
     transition: backgroud-color 0.2 ease-in-out;
     background-color: rgba(255, 255, 255, 0.234);
 }
+
+a.nav-link {
+    color: #1f212c;
+    text-decoration: none;
+    margin: 10px;
+}
+
+div.right-nav-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+div.user-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 250px;
+}
+
+.danger {
+    background-color: #b23535;
+}
+
+div.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
