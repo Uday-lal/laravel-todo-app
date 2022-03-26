@@ -72,8 +72,9 @@
                                 <div class="input-container">
                                     <textarea required placeholder="Enter discription" name="discription" cols="40" rows="10">{{$nextTask->discription}}</textarea>
                                 </div>
-                                <div class="button-container">
+                                <div class="button-container" style="display: flex; width: 100%; justify-content: space-between">
                                     <button type="submit" style="width: 100px;" class="primary-button">Update</button>
+                                    <a href="/delete/{{$nextTask->id}}" class="primary-button button danger">Remove</a>
                                 </div>
                             </form>
                         </div>
@@ -127,8 +128,9 @@
                                 <div class="input-container">
                                     <textarea required placeholder="Enter discription" name="discription" cols="40" rows="10">{{$on_progress_task->discription}}</textarea>
                                 </div>
-                                <div class="button-container">
+                                <div class="button-container" style="display: flex; width: 100%; justify-content: space-between">
                                     <button type="submit" style="width: 100px;" class="primary-button">Update</button>
+                                    <a href="/delete/{{$on_progress_task->id}}" class="primary-button button danger">Remove</a>
                                 </div>
                             </form>
                         </div>
@@ -182,8 +184,9 @@
                                 <div class="input-container">
                                     <textarea required placeholder="Enter discription" name="discription" cols="40" rows="10">{{$done_task->discription}}</textarea>
                                 </div>
-                                <div class="button-container">
+                                <div class="button-container" style="display: flex; width: 100%; justify-content: space-between">
                                     <button type="submit" style="width: 100px;" class="primary-button">Update</button>
+                                    <a href="/delete/{{$done_task->id}}" class="primary-button button danger">Remove</a>
                                 </div>
                             </form>
                         </div>

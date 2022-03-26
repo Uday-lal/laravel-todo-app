@@ -31,17 +31,21 @@ class ManagerController extends Controller
             abort(403);
         };
         $userData = DB::table("users")->where("id", $id)->first();
-        $nextTasks = DB::table("todo")->where("status", "next")->get();
-        $onProgressTask = DB::table("todo")->where("status", "on_progress")->get();
-        $doneTask = DB::table("todo")->where("status", "done")->get();
-        return view("welcome", [
-            "next" => $nextTasks, 
-            "on_progress" => $onProgressTask, 
-            "done" => $doneTask,
-            "user_data" => $userData,
-            "manager_view" => true,
-            "is_manager" => $isManager
-        ]);
+        if (isset($userData)) {
+            $nextTasks = DB::table("todo")->where("status", "next")->get();
+            $onProgressTask = DB::table("todo")->where("status", "on_progress")->get();
+            $doneTask = DB::table("todo")->where("status", "done")->get();
+            return view("welcome", [
+                "next" => $nextTasks, 
+                "on_progress" => $onProgressTask, 
+                "done" => $doneTask,
+                "user_data" => $userData,
+                "manager_view" => true,
+                "is_manager" => $isManager
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
     public function createTask(Request $request, $id) {
@@ -49,6 +53,10 @@ class ManagerController extends Controller
         $isManager = $request->session()->get("is_manager");
         if (!$isLogin || !$isManager) {
             abort(403);
+        }
+        $userData = DB::table("users")->where("id", $id)->first();
+        if (isset($userData)) {
+            abort(404);
         }
         $title = $request->input()["task"];
         $discription = $request->input()["discription"];

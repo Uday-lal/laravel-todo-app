@@ -23,6 +23,7 @@ Route::post("/", [TodoController::class, 'createTask']);
 Route::post("/update", [TodoController::class, "update"]);
 Route::get("/progress/{status}/{id}", [TodoController::class, "progress"]);
 Route::get("/logout", [TodoController::class, "logout"]);
+Route::get("/delete/{id}", [TodoController::class, "delete"]);
 
 // login routes
 Route::get("/login", [AuthController::class, 'getLoginTemplate']);

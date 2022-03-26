@@ -18,7 +18,7 @@
     <script>alertify.success('{{ session()->get("message") }}');</script>
     @endif
     @if (session()->has('message') && session()->get("type") == 'error')
-    <script>alertify.success('{{ session()->get("message") }}');</script>
+    <script>alertify.error('{{ session()->get("message") }}');</script>
     @endif
     <script src="/js/app.js"></script>
 </body>
