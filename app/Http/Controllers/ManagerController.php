@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use App\Models\Todo;
 
 
 class ManagerController extends Controller
@@ -38,18 +39,42 @@ class ManagerController extends Controller
             "on_progress" => $onProgressTask, 
             "done" => $doneTask,
             "user_data" => $userData,
+            "manager_view" => true,
             "is_manager" => $isManager
         ]);
     }
 
-    public function createTask(Request $request) {
+    public function createTask(Request $request, $id) {
         $isLogin = $this->isLogin($request);
         $isManager = $request->session()->get("is_manager");
         if (!$isLogin || !$isManager) {
             abort(403);
         }
-        $title = $requst->input()["task"];
+        $title = $request->input()["task"];
         $discription = $request->input()["discription"];
+
+        if ($this->validateInputLenght($title, 20) && $this->validateInputLenght($discription, 50)) {
+            $todoModel = new Todo();
+            $todoModel->task = $title;
+            $todoModel->discription = $discription;
+            $todoModel->user_id = $id;
+            $todoModel->status = "next";
+            $todoModel->date = date("Y-m-d");
+            $todoModel->save();
+            $request->session()->flash("message", "Task created");
+            $request->session()->flash("type", "success");
+        } else {
+            $request->session()->flash("message", "Title and discription are too long");
+            $request->session()->flash("type", "error");
+        }
+        return redirect($request->url());
+    }
+
+    private function validateInputLenght($value, $lenght) {
+        if (strlen($value) > $lenght) {
+            return false;
+        }
+        return true;
     }
 
     private function isLogin(Request $request) {

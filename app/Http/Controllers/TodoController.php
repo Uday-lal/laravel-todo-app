@@ -16,15 +16,16 @@ class TodoController extends Controller
         }
         $userId = $request->session()->get("user_id");
         $userData = DB::table("users")->where("id", $userId)->first();
-        $nextTasks = DB::table("todo")->where("status", "next")->get();
-        $onProgressTask = DB::table("todo")->where("status", "on_progress")->get();
-        $doneTask = DB::table("todo")->where("status", "done")->get();
+        $nextTasks = DB::table("todo")->where("status", "next")->where("user_id", $userId)->get();
+        $onProgressTask = DB::table("todo")->where("status", "on_progress")->where("user_id", $userId)->get();
+        $doneTask = DB::table("todo")->where("status", "done")->where("user_id", $userId)->get();
         return view("welcome", 
             [
                 "next" => $nextTasks, 
                 "on_progress" => $onProgressTask, 
                 "done" => $doneTask,
                 "user_data" => $userData,
+                "manager_view" => false,
                 "is_manager" => $request->session()->get("is_manager")
             ]
         );
@@ -60,7 +61,7 @@ class TodoController extends Controller
                 "task" => $task
             ]
         );
-        return redirect("/");
+        return redirect()->back();
     }
 
     public function progress(Request $request, $status, $id) {

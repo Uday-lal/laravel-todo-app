@@ -28,7 +28,11 @@
 <div class="home-page">
     <nav class="nav-gradian">
         <div class="left-nav-section">
+            @if ($manager_view)
+            <h1 style="font-weight: normal; font-size: 30px">User, <span style="color: #3E59E8">{{$user_data->username}}</span></h1>
+            @else
             <h1 style="font-weight: normal; font-size: 30px">Hi, <span style="color: #3E59E8">{{$user_data->username}}</span></h1>
+            @endif
         </div>
         <div class="right-nav-section">
             @if ($is_manager)
@@ -89,9 +93,11 @@
                             <div class="status next-status"></div>
                             <div>Next Status</div>
                         </div>
+                        @if(!$manager_view)
                         <div class="timing">
                             <a href="/progress/on_progress/{{$nextTask->id}}" style="color: yellow">Add to on progress</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 @endforeach
@@ -142,9 +148,11 @@
                             <div class="status on-progress-status"></div>
                             <div>On progress</div>
                         </div>
+                        @if (!$manager_view)
                         <div class="timing">
                             <a style="color: green" href="/progress/done/{{$on_progress_task->id}}">Add to done</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 @endforeach
@@ -195,9 +203,11 @@
                             <div class="status done-status"></div>
                             <div>Done</div>
                         </div>
+                        @if (!$manager_view)
                         <div class="timing">
                             <a style="color: red" href="/progress/delete/{{$done_task->id}}">Remove</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 @endforeach
